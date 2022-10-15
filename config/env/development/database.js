@@ -1,14 +1,13 @@
-module.exports = ({ env }) => ({
+module.exports =  ({ env }) => ({
 	connection: {
-	  client: process.env.DATABASE_CLIENT,
-	  connection: {
-		host: process.env.DATABASE_HOST,
-		port: parseInt(process.env.DATABASE_PORT),
-		database: process.env.DATABASE_NAME,
-		user: process.env.DATABASE_USERNAME,
-		password: process.env.DATABASE_PASSWORD,
-		ssl: false,
-	  },
-	},
-  });
-  
+		client: 'mysql',
+		connection: {
+		host: env('DATABASE_HOST', 'localhost'),
+			port: env.int('DATABASE_PORT', 3306),
+			database: env('DATABASE_NAME', 'strapi'),
+			user: env('DATABASE_USERNAME', 'strapi'),
+			password: env('DATABASE_PASSWORD', '1q2w3e4r5t'),
+			ssl: env.bool('DATABASE_SSL', false)
+		}
+	}
+});
