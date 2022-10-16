@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_CLIENT: postgres
-      DATABASE_HOST: strapiDB
+      DATABASE_HOST: db
       DATABASE_NAME: strapi
       DATABASE_USERNAME: strapi
       DATABASE_PORT: 5432
@@ -27,10 +27,10 @@ services:
     networks:
       - strapi
     depends_on:
-      - strapiDB
+      - db
       
-  strapiDB:
-    container_name: strapiDB
+  db:
+    container_name: db
     platform: linux/amd64 #for platform error on Apple M1 chips
     restart: unless-stopped
     image: postgres:12.0-alpine
